@@ -99,7 +99,7 @@ if page == "Project Overview":
     display_df["products"] = display_df["products"].apply(lambda x: ", ".join(x) if isinstance(x, list) else x)
     display_df.columns = ["ID", "Project", "Number", "Planned (h)", "Actual (h)", "Variance %", "Products"]
 
-    styled = display_df.style.applymap(colour_variance, subset=["Variance %"])
+    styled = display_df.style.map(colour_variance, subset=["Variance %"])
     st.dataframe(styled, use_container_width=True, hide_index=True)
 
     st.markdown("---")
@@ -277,7 +277,7 @@ elif page == "Capacity Tracker":
             return "background-color: #ffcccc; color: #7b0000"
         return ""
 
-    st.dataframe(display.style.applymap(colour_deficit, subset=["Deficit"]),
+    st.dataframe(display.style.map(colour_deficit, subset=["Deficit"]),
                  use_container_width=True, hide_index=True)
 
 # ══════════════════════════════════════════════════════════════════════════════
@@ -366,7 +366,7 @@ elif page == "Worker Coverage":
             return "background-color: #ffcccc; color: #7b0000; font-weight: bold"
         return "background-color: #ccf0d4; color: #1a5c2a"
 
-    st.dataframe(display_spof.style.applymap(colour_risk, subset=["Risk"]),
+    st.dataframe(display_spof.style.map(colour_risk, subset=["Risk"]),
                  use_container_width=True, hide_index=True)
 
 # ══════════════════════════════════════════════════════════════════════════════
